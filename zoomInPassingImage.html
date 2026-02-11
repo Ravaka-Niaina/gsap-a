@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoom In Passing Image</title>
+    <style>
+      :root {
+        --box-width: 300px;
+        --box-height: 200px;
+      }
+
+      body {
+        margin: 0;
+        background-color: black;
+        font-family: Roboto, sans-serif;
+        color: white;
+      }
+
+      .container {
+        display: grid;
+        gap: 10px;
+        padding-left: 100px;
+        padding-top: 400px;
+        padding-bottom: 400px;
+      }
+
+      .box {
+        width: var(--box-width);
+        height: var(--box-height);
+        background: linear-gradient(45deg, rgb(66, 65, 65), rgb(28, 28, 28));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        color: white;
+        font-family: Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">01</div>
+      <div class="box">02</div>
+      <div class="box">03</div>
+      <div class="box">04</div>
+      <div class="box">05</div>
+      <div class="box">06</div>
+      <div class="box">07</div>
+      <div class="box">08</div>
+      <div class="box">09</div>
+      <div class="box">10</div>
+    </div>
+
+    <script src="./js/gsap.min.js"></script>
+    <script src="./js/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      const sections = gsap.utils.toArray(".box");
+
+      sections.forEach((section) => {
+        gsap.to(section, {
+          keyframes: {
+            "0%": { scale: 1 },
+            "50%": {
+              scale: 1.5,
+              marginTop: 50,
+              marginBottom: 50,
+              marginLeft: 75,
+            },
+            "100%": {
+              scale: 1,
+              marginTop: 0,
+              marginBottom: 0,
+              marginLeft: 0,
+            },
+          },
+          scrollTrigger: {
+            trigger: section,
+            start: "bottom 90%",
+            end: "top top",
+            scrub: true,
+            markers: true,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
