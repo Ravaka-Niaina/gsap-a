@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Text with moving borders</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .container {
+        position: relative;
+      }
+
+      .borders {
+        border: 2px solid black;
+        position: absolute;
+        inset: 0;
+      }
+
+      h1 {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="borders"></div>
+      <h1>Shake that ass!</h1>
+    </div>
+
+    <script src="./js/gsap.min.js"></script>
+    <script src="./js/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      const borders = document.querySelector(".borders");
+
+      const tl = gsap.timeline({
+        repeat: -1,
+        defaults: { duration: 0.5 },
+      });
+
+      tl.to(borders, {
+        skewX: -15,
+        skewY: -15,
+        ease: "power3.out",
+      })
+        .to(borders, {
+          skewX: 15,
+          skewY: 0,
+        })
+        .to(borders, {
+          skewX: 15,
+          skewY: 15,
+        })
+        .to(borders, {
+          skewX: 0,
+          skewY: 15,
+        })
+        .to(borders, {
+          skewX: 0,
+          skewY: 0,
+        });
+    </script>
+  </body>
+</html>
