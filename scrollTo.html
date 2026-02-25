@@ -88,7 +88,10 @@
       document.querySelectorAll(".link-disabled").forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault();
-          gsap.to(window, { duration: 2, scrollTo: link.getAttribute("href") });
+          gsap.to(window, {
+            duration: 2,
+            scrollTo: { y: link.getAttribute("href"), autoKill: true },
+          });
         });
       });
     </script>
