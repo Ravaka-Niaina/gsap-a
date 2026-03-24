@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Example</title>
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0a0a0a;
+        font-family: Arial, sans-serif;
+        color: #fff;
+      }
+
+      .card {
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 300px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 1.5rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: #9ca3af;
+        line-height: 1.5;
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      .card::after,
+      .card::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: conic-gradient(
+          from var(--angle),
+          #ff4545,
+          #00ff99,
+          #006aff,
+          #ff0095,
+          #ff4545
+        );
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+        padding: 3px;
+        border-radius: 10px;
+        animation: 3s spin linear infinite;
+      }
+
+      .card::before {
+        filter: blur(1.5rem);
+        opacity: 0.5;
+      }
+
+      @keyframes spin {
+        from {
+          --angle: 0deg;
+        }
+        to {
+          --angle: 360deg;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>My Card Title</h2>
+      <p>
+        This is a simple card component. You can put any text or content here to
+        describe something like a project, profile, or product.
+      </p>
+    </div>
+  </body>
+</html>
